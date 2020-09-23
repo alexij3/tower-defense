@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform[] waypoints;
     public int currentWaypoint;
 
     public float speed;
@@ -21,16 +20,16 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(waypoints[currentWaypoint].position);
+        agent.SetDestination(Waypoints.waypoints[currentWaypoint].position);
         if (agent.remainingDistance <= .2f)
         {
             currentWaypoint++;
-            if (currentWaypoint == waypoints.Length)
+            if (currentWaypoint == Waypoints.waypoints.Length)
             {
                 Destroy(gameObject);
-                return;
             }
-            agent.SetDestination(waypoints[currentWaypoint].position);
+            agent.SetDestination(Waypoints.waypoints[currentWaypoint].position);
         }
     }
+
 }
